@@ -6,3 +6,9 @@
 .area {
   margin-top: 40px;
 }
+
+.link {
+  color: blue;
+  border-bottom: 1px solid blue;
+  margin-left: 8px;
+}

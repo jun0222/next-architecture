@@ -29,6 +29,7 @@ yarn dev
 - Storybook
 - Jest
 - React Testing Library
+- Cypress
 - Express.js
 - MySQL
 - ESLint

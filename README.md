@@ -30,8 +30,6 @@ yarn dev
 - Jest
 - React Testing Library
 - Cypress
-- Express.js
-- MySQL
 - ESLint
 - Prettier
 - GitHub Actions

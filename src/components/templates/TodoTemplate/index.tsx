@@ -1,17 +1,12 @@
+import { TodoContext } from "@/components/providers/TodoProvider";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./styles.module.css";
 
 export const TodoTemplate = () => {
-  const dummyTodos = [
-    { id: 1, title: "1つ目", content: "1つ目の本文" },
-    { id: 2, title: "2つ目", content: "2つ目の本文" },
-    { id: 3, title: "3つ目", content: "3つ目の本文" },
-  ];
+  const contextValue = useContext(TodoContext);
 
-  // FIXME: ContextAPIで管理する
-  const [todos] =
-    useState<{ id: number; title: string; content: string }[]>(dummyTodos);
+  const [todos] = useState(contextValue);
 
   return (
     <>

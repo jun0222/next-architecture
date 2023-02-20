@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode } from "react";
+import { createContext, FC, ReactNode, useState } from "react";
 
 type Props = {
   children: ReactNode;
@@ -7,16 +7,14 @@ type Props = {
 // FIXME: TodoContextTypeという命名はよくなさそうなので、全体的に直したい
 export type TodoContextType = { id: number; title: string; content: string };
 
-export const TodoContext = createContext({} as TodoContextType[]);
+export const TodoContext = createContext({});
 
 export const TodoProvider: FC<Props> = ({ children }) => {
-  const dummyTodos = [
-    { id: 1, title: "1つ目", content: "1つ目の本文" },
-    { id: 2, title: "2つ目", content: "2つ目の本文" },
-    { id: 3, title: "3つ目", content: "3つ目の本文" },
-  ];
+  const [todos, setTodos] = useState<TodoContextType[]>([]);
 
   return (
-    <TodoContext.Provider value={dummyTodos}>{children}</TodoContext.Provider>
+    <TodoContext.Provider value={{ todos, setTodos }}>
+      {children}
+    </TodoContext.Provider>
   );
 };

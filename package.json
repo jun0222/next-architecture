@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext .ts,.tsx src",
-    "lint:fix": "eslint --ext .ts,.tsx src --fix"
+    "lint": "eslint --ext .ts,.tsx src/*/**",
+    "lint:fix": "eslint --ext .ts,.tsx src/*/** --fix"
   },
   "dependencies": {
     "eslint-config-prettier": "^8.6.0",

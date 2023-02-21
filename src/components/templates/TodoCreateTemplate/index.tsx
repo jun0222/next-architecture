@@ -4,14 +4,22 @@ import { useContext, useState } from "react";
 import styles from "./styles.module.css";
 
 export const TodoCreateTemplate = () => {
-  const { todos, setTodos } = useContext(TodoContext);
+  // FIXME: createContextの初期値と値があるときで型が合わない対処。もっと良い方法があればそちらにする。右のように分割代入したい const { todos, setTodos } = useContext(TodoContext);
+  const todoContext = useContext(TodoContext);
+  const todos = todoContext?.todos;
+  const setTodos = todoContext?.setTodos;
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   console.log(todos);
 
   // FIXME: 入力ごとにレンダリングされる
-  const getInputTextForTitle = (event) => setTitle(event.target.value);
-  const getInputTextForContent = (event) => setContent(event.target.value);
+  // FIXME: todo追加処理、もっと良い方法がないか調査してリファクタ。eventの型指定も。
+  // FIXME: カスタムフックにする
+  const getInputTextForTitle = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setTitle(event.target.value);
+  const getInputTextForContent = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setContent(event.target.value);
 
   const addTaskToTodos = async () => {
     if (title === "") {
@@ -24,11 +32,12 @@ export const TodoCreateTemplate = () => {
     }
 
     // ContextAPIでデータ保存（DBへ保存する場合もここで行う）
-    const lastTodo = todos.slice(-1)[0];
+    // FIXME: createContextの初期値と値があるときで型が合わない対処をした関連、undefinedにしている初期値の扱いをスマートにしたい
+    const lastTodo = todos?.slice(-1)[0]; // https://qiita.com/kerupani129/items/64ce1e80eb8efb4c2b21
     const id = lastTodo ? lastTodo.id + 1 : 1;
     const newTodo = { id, title, content };
-    const newTodos = [...todos, newTodo];
-    setTodos(newTodos);
+    const newTodos = todos ? [...todos, newTodo] : [];
+    setTodos && setTodos(newTodos);
 
     window.alert(
       `以下のタスクを登録しました。\n\nタイトル：${title}\n内容：${content}`
@@ -60,7 +69,7 @@ export const TodoCreateTemplate = () => {
         </button>
 
         <button color="primary">
-          <Link href="/">戻る</Link>
+          <Link href="/">todo一覧へ</Link>
         </button>
       </div>
     </>

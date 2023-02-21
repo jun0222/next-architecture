@@ -1,18 +1,20 @@
 import { TodoContext } from "@/components/providers/TodoProvider";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styles from "./styles.module.css";
 
 export const TodoTemplate = () => {
-  const { todos } = useContext(TodoContext);
-  console.log(todos);
+  // FIXME: createContextの初期値と値があるときで型が合わない対処。
+  const todoContext = useContext(TodoContext);
+  const todos = todoContext?.todos;
 
   return (
     <>
       <div className={styles.container}>
         <h2>Todo一覧</h2>
         <ul className={styles.area}>
-          {todos.map((todo) => {
+          {/* FIXME: createContextの初期値と値があるときで型が合わない対処。 */}
+          {todos?.map((todo) => {
             return (
               <div key={todo.id}>
                 {`${todo.title}：${todo.content}`}

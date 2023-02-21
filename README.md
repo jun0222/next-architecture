@@ -22,6 +22,7 @@
 - [それだけじゃない！ Storybook の活用方法](https://qiita.com/punkshiraishi/items/e4166ddfcbb7250e6389)
 - [こんなに簡単なの？React Hook useContext でデータ共有](https://reffect.co.jp/react/react-usecontext-understanding)
 - [モダン JavaScript の基本から始める　 React 実践の教科書](https://www.sbcr.jp/product/4815610722/)
+- [TypeScript & Context API の defaultValue の書き方（use\*\*\*がうまく機能しない時）](https://zenn.dev/hiro4hiro4/articles/a19d1f5c9b6eab)
 
 # コマンド
 
